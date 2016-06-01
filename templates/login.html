@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block head %}
+  {{ super() }}
+  <style type=text/css>
+    h1 { margin: 0 0 10px 0; background: url({{ url_for('static', filename='voc/abstr_0.3.5.png') }}) no-repeat center; width 880px;height: 200px; }
+    h1 span, p.tagline { display: none;
+  </style>
+  <script type=text/javascript>
+    $(function() {
+      $('h1').bind('mousedown contextmenu', function(event) {
+        if (event.button != 2)
+          return;
+        var box = $('div.logohint');
+        if (!box.is(':visible'))
+          box.animate({'height': 'show', 'opacity': 'show'}, 100);
+        event.preventDefault();
+        event.returnValue = false;
+        return false;
+      });
+    });
+  </script>
+{% endblock %}
+{% block body %}
+  <h2>Login</h2>
+  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+  <form action="{{ url_for('login') }}" method=post>
+    <dl>
+      <dt>Username:
+      <dd><input type=text name=username>
+      <dt>Password:
+      <dd><input type=password name=password>
+      <dd><input type=submit value=Login>
+    </dl>
+  </form>
+{% endblock %}

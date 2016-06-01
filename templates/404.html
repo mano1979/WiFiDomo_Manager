@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<title>Chapter 404: The Lost Page</title>
+<style type=text/css>
+  h1 { margin: 0 0 10px 0; background: url({{ url_for('static', filename='voc/abstr_0.3.5.png') }}) no-repeat center; width 880px;height: 200px; }
+  h1 span, p.tagline { display: none; }
+
+  body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: url({{ url_for('static', filename='ship.png') }}) no-repeat center right;
+  }
+
+  body:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: url({{ url_for('static', filename='mask.png') }}) repeat-y left;
+  }
+
+  a { color: #004B6B; }
+  a:hover { color: #6D4100; }
+
+  h3 {
+    font-family: 'Garamond', 'Georgia', serif;
+    font-weight: normal;
+    color: #222;
+    font-size: 36px;
+    padding: 50px 0 10px 50px;
+    margin: 0;
+  }
+
+  p {
+    font-family: 'Georgia', serif;
+    color: #000;
+    font-size: 17px;
+    padding: 10px 0 0 90px;
+    margin: 0;
+    width: 360px;
+  }
+</style>
+<script type=text/javascript>
+  $(function() {
+    $('h1').bind('mousedown contextmenu', function(event) {
+      if (event.button != 2)
+        return;
+      var box = $('div.logohint');
+      if (!box.is(':visible'))
+        box.animate({'height': 'show', 'opacity': 'show'}, 100);
+      event.preventDefault();
+      event.returnValue = false;
+      return false;
+    });
+  });
+</script>
+{% endblock %}
+
+{% block body_title %}
+  {{ super() }}
+  <p class=tagline>Mixing Open Source and Electronics.</p>
+{% endblock %}
+
+{% block body %}
+<h3>Chapter 404: The Lost Page</h3>
+<p>A careful and diligent search has been made for the desired page, but it just cannot be found.<br>
+And so they returned to <a href=/>familiar waters</a>.</p>
+{% endblock %}
