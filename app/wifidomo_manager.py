@@ -41,7 +41,7 @@ from werkzeug.contrib.fixers import ProxyFix
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.secret_key = os.urandom(24)
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
 nav = Navigation(app)
 
@@ -54,10 +54,10 @@ app.config['PASSWORD'] = generate_password_hash("WiFiDomo")
 
 # Website navigation:
 nav.Bar('top', [
-  nav.Item('Home', 'index'),
-  nav.Item('Add', 'index'),
-  nav.Item('Overview', 'index'),
-  nav.Item('About', 'index')
+  nav.Item('Home', 'general.index'),
+  nav.Item('Add', 'general.index'),
+  nav.Item('Overview', 'general.index'),
+  nav.Item('About', 'general.index')
 ])
 
 '''
@@ -65,10 +65,6 @@ nav.Bar('top', [
 # Handlers
 # ===========================================================================
 '''
-
-@app.route('/')
-def index():
-  return render_template('index.html')
 
 
 @app.errorhandler(404)
@@ -87,29 +83,13 @@ def verify_password(username, password):
 def current_year():
     return {'current_year': datetime.utcnow().year}
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-  error = None
-  if request.method == 'POST':
 
-    if not verify_password(request.form['username'], request.form['password']):
-      error = 'Invalid login credentials'
-    else:
-      session['logged_in'] = True
-      flash('You were logged in')
-      return redirect(url_for('index'))
-  return render_template('login.html', error=error)
+from app.views import general
 
-
-@app.route('/logout')
-def logout():
-  session.pop('logged_in', None)
-  flash('You were logged out')
-  return redirect(url_for('index'))
-
+app.register_blueprint(general.mod)
 
 #from flask_website.database import User, db_session
-from flask_website import utils
+from app import utils
 
 app.jinja_env.filters['datetimeformat'] = utils.format_datetime
 app.jinja_env.filters['dateformat'] = utils.format_date
