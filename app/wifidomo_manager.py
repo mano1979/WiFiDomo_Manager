@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import random
+
 __author__ = 'Martijn van Leeuwen'
 __email__ = 'info@voc-electronics.com'
 # ==============================================================================
@@ -11,20 +11,9 @@ __email__ = 'info@voc-electronics.com'
 #
 #  Description:
 #
-#
 # ==============================================================================
-#
-# Todo:
-#
-# ===========================================================================
 # Imports
-# ===========================================================================
-import sys
-import getopt
-import threading
-import paramiko
-import subprocess
-import time
+# ==============================================================================
 import os
 from datetime import datetime
 from flask import Flask, render_template, url_for, request, g, flash, redirect, jsonify, session
@@ -33,25 +22,29 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.contrib.fixers import ProxyFix
-
-# ===========================================================================
+'''
+# ==============================================================================
 # Global settings
-# ===========================================================================
+# ==============================================================================
 # Setup Flask
+'''
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.secret_key = os.urandom(24)
-#db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
 nav = Navigation(app)
 
+''' Default admin user and password '''
 users = {
   "Admin": generate_password_hash("WiFiDomo")
 }
 
-app.config['USERNAME'] = 'Admin'
-app.config['PASSWORD'] = generate_password_hash("WiFiDomo")
-
+'''
+# ==============================================================================
+# Setup navigation bar with links.
+# ==============================================================================
+'''
 # Website navigation:
 nav.Bar('top', [
   nav.Item('Home', 'general.index'),
@@ -61,9 +54,9 @@ nav.Bar('top', [
 ])
 
 '''
-# ===========================================================================
+# ==============================================================================
 # Handlers
-# ===========================================================================
+# ==============================================================================
 '''
 
 
@@ -83,12 +76,18 @@ def verify_password(username, password):
 def current_year():
     return {'current_year': datetime.utcnow().year}
 
+'''
+# ==============================================================================
+# Load and register module
+# ==============================================================================
+'''
 
 from app.views import general
 
 app.register_blueprint(general.mod)
 
-#from flask_website.database import User, db_session
+# ToDo Enable the use of a local or remote database
+#from app.database import User, db_session # When they are in use.
 from app import utils
 
 app.jinja_env.filters['datetimeformat'] = utils.format_datetime
