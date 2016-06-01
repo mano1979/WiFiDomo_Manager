@@ -7,8 +7,8 @@ requests
 lxml
 PyJWT
 logger
-Flask >= 0.10.1
-Flask-API >= 0.6.5
+Flask >= 0.11
+Flask-API >= 0.6.6
 Flask_Bootstrap >= 3.3.5.7
 Flask-Session >= 0.1.2
 flask-apidoc >= 1.0.0
