@@ -1,0 +1,36 @@
+{% extends "wifidomos/layout.html" %}
+{% block head %}
+  {{ super() }}
+  <style type=text/css>
+    h1 { background-image: url(/static/new-snippet.png); }
+  </style>
+{% endblock %}
+{% block title %}New WiFiDomo{% endblock %}
+{% block body %}
+  <p>
+    <small>Please fill in all details.</small>
+  <form action="" method=post>
+    <dl class=formlist>
+      <dt>Title:
+      <dd><input type=text name=title value="{{ request.form.title }}" size=40>
+      <dt>Location:
+      <dd>
+        <select name=location>
+        {% for location in locations %}
+          <option{% if location.id == active_location %} selected{% endif
+            %} value={{ location.id }}>{{ location.name }}</option>
+        {% endfor %}
+        </select>
+    </dl>
+    <p><textarea name=body cols=40 rows=20>{{ request.form.body }}</textarea>
+    <p>
+      <input type=submit value="Add WiFiDomo">
+      <input type=submit name=preview value="Preview">
+  </form>
+  {% if preview %}
+  <div id=preview>
+    <h2>Preview</h2>
+    {{ preview }}
+  </div>
+  {% endif %}
+{% endblock %}
