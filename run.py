@@ -1,4 +1,6 @@
-
+# -*- coding: utf-8 -*-
+__author__ = 'Martijn van Leeuwen'
+__email__ = 'info@voc-electronics.com'
 from app.wifidomo_manager import app
 from modules.config import config
 

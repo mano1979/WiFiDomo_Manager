@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+__author__ = 'Martijn van Leeuwen'
+__email__ = 'info@voc-electronics.com'
 from flask import Blueprint, render_template, session, redirect, url_for, \
   request, flash, g, jsonify, abort
 from app.utils import requires_login, request_wants_json
