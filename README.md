@@ -23,6 +23,15 @@ Een flask based website for WiFiDomo.
 1) Encryption key for use by NGINX
 
 
+## Python and other required Libraries:
+* libssl-dev
+* libffi
+
+possibly, if xml is needed:<br>
+* libxslt1-dev
+* libxml2
+* libxml2-dev
+
 ## Not Licensed yet
 
 
