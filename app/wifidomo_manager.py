@@ -18,9 +18,12 @@ __email__ = 'info@voc-electronics.com'
 import os
 from datetime import datetime
 from flask import Flask, render_template, url_for, request, g, flash, redirect, jsonify, session
-from flask.ext.navigation import Navigation
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.httpauth import HTTPBasicAuth
+from flask_navigation import Navigation
+#from flask.ext.navigation import Navigation
+from flask_sqlalchemy import SQLAlchemy
+#from flask.ext.sqlalchemy import SQLAlchemy
+from flask_httpauth import HTTPBasicAuth
+#from flask.ext.httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.contrib.fixers import ProxyFix
 '''
