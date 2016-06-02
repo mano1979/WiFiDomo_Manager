@@ -9,7 +9,7 @@ from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
 from pygments.util import ClassNotFound
 from flask import g, url_for, flash, abort, request, redirect, Markup
-from flask_website.flaskystyle import FlaskyStyle # same as docs
+from app.flaskystyle import FlaskyStyle # same as docs
 
 
 pygments_formatter = HtmlFormatter(style=FlaskyStyle)
