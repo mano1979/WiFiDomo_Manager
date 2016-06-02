@@ -4,7 +4,7 @@ __email__ = 'info@voc-electronics.com'
 from flask import Blueprint, render_template, session, redirect, url_for, \
   request, flash, g, jsonify, abort
 from app.utils import requires_login, request_wants_json
-from app.search import search as perform_search
+#from app.search import search as perform_search
 from app.wifidomo_manager import verify_password
 
 mod = Blueprint('general', __name__)
